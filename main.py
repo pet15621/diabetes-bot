@@ -100,6 +100,10 @@ def predict(model_key, answers):
     return msg
 
 # ========== Webhook endpoint ==========
+@app.get("/webhook")
+async def webhook_verify():
+    return JSONResponse(content={"status": "ok"})
+
 @app.post("/webhook")
 async def webhook(request: Request):
     signature = request.headers.get("X-Line-Signature", "")
