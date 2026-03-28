@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+line-bot-sdk
+pandas
+numpy
+scikit-learn
+shap
+joblib
+python-dotenv
