@@ -23,7 +23,8 @@ for col in cols_with_zero:
     df[col] = df[col].replace(0, df[col].median())
 
 # แบ่ง features และ target
-X = df.drop('Outcome', axis=1)
+SELECTED_FEATURES = ['Glucose', 'BMI', 'Age', 'Pregnancies']
+X = df[SELECTED_FEATURES]
 y = df['Outcome']
 
 # แบ่ง train/test 80/20
