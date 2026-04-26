@@ -32,14 +32,10 @@ background   = joblib.load("models/shap_background.pkl")
 
 # ========== คำถามทีละขั้น ==========
 QUESTIONS = [
-    ("Pregnancies",              "จำนวนครั้งที่ตั้งครรภ์ (ถ้าไม่เคยใส่ 0)"),
-    ("Glucose",                  "ระดับน้ำตาลในเลือด (mg/dL) เช่น 120"),
-    ("BloodPressure",            "ความดันโลหิต Diastolic (mmHg) เช่น 72"),
-    ("SkinThickness",            "ความหนาผิวหนังบริเวณต้นแขน (mm) เช่น 23"),
-    ("Insulin",                  "ระดับอินซูลิน (µU/ml) เช่น 80"),
-    ("BMI",                      "ค่า BMI เช่น 28.5"),
-    ("DiabetesPedigreeFunction", "ความเสี่ยงทางพันธุกรรม (0.0–2.5) เช่น 0.5"),
-    ("Age",                      "อายุ (ปี) เช่น 35"),
+    ("Glucose",     "ระดับน้ำตาลในเลือด (mg/dL) เช่น 120"),
+    ("BMI",         "ค่า BMI เช่น 28.5"),
+    ("Age",         "อายุ (ปี) เช่น 35"),
+    ("Pregnancies", "จำนวนครั้งที่ตั้งครรภ์ (ถ้าไม่เคยใส่ 0)"),
 ]
 
 # ========== เก็บ session ของแต่ละ user ==========
@@ -163,7 +159,7 @@ def handle_message(event):
 
         reply = (
             f"เลือก {model_name} แล้วครับ\n\n"
-            f"คำถามที่ 1/8\n"
+            f"คำถามที่ 1/4\n"
             f"{q_text}"
         )
         line_bot_api.reply_message(
@@ -193,7 +189,7 @@ def handle_message(event):
         if next_step < len(QUESTIONS):
             session["step"] = next_step
             reply = (
-                f"คำถามที่ {next_step+1}/8\n"
+                f"คำถามที่ {next_step+1}/4\n"
                 f"{QUESTIONS[next_step][1]}"
             )
             line_bot_api.reply_message(
