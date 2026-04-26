@@ -57,7 +57,7 @@ def get_shap_top3(model_key, input_scaled, input_raw):
     else:
         explainer  = shap.KernelExplainer(model.predict_proba, background)
         sv         = explainer.shap_values(X_df, nsamples=100)
-        sv1        = np.array(sv).flatten()[8:]
+        sv1 = np.array(sv).flatten()[4:]
 
     impact = pd.Series(np.abs(sv1), index=feature_names)
     top3   = impact.nlargest(3)

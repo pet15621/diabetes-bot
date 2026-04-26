@@ -14,7 +14,8 @@ cols_with_zero = ['Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI']
 for col in cols_with_zero:
     df[col] = df[col].replace(0, df[col].median())
 
-X = df.drop('Outcome', axis=1)
+SELECTED_FEATURES = ['Glucose', 'BMI', 'Age', 'Pregnancies']
+X = df[SELECTED_FEATURES]
 y = df['Outcome']
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -115,7 +116,7 @@ prob       = ann.predict_proba(sample)[0][1]
 bg           = joblib.load("models/shap_background.pkl")
 exp_ann_test = shap.KernelExplainer(ann.predict_proba, bg)
 sv_single    = exp_ann_test.shap_values(sample, nsamples=100)
-sv_single1 = np.array(sv_single).flatten()[8:]
+sv_single1 = np.array(sv_single).flatten()[4:]
 
 feature_impact = pd.Series(np.abs(sv_single1), index=X.columns)
 top3 = feature_impact.nlargest(3)
